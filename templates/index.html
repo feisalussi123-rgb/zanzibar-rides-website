@@ -1,377 +1,935 @@
-{% extends 'base.html' %} {% block title %}Best Ride | Explore Zanzibar your
-way{% endblock %} {% block content %}
+{% extends 'base.html' %}
+
+{% block title %}Best Ride | Explore Zanzibar your way{% endblock %}
+
+{% block content %}
+
 <main>
+
+  <!-- HERO -->
   <section class="hero-section" id="home">
     <div class="container hero-grid">
+
       <div class="hero-copy">
         <p class="kicker">ZANZIBAR · CAR & SCOOTER RENTAL</p>
-        <h1>Your island.<br /><em>Your pace.</em></h1>
+
+        <h1>Your island.<br><em>Your pace.</em></h1>
+
         <p class="hero-lead">
           Reliable cars and scooters delivered to your hotel, from Stone Town to
           Paje. Book directly with a local team that knows the road.
         </p>
+
         <div class="hero-actions">
-          <a class="button button-primary" href="#booking"
-            >Find your ride <span>↗</span></a
-          ><a class="text-link" href="#fleet"
-            >Browse the fleet <span>→</span></a
-          >
+          <a class="button button-primary" href="#booking">
+            Find your ride <span>↗</span>
+          </a>
+
+          <a class="text-link" href="#fleet">
+            Browse the fleet <span>→</span>
+          </a>
         </div>
+
         <div class="hero-proof">
-          <div><strong>4.9/5</strong><span>guest rating</span></div>
-          <div><strong>6+</strong><span>years local</span></div>
-          <div><strong>6</strong><span>delivery zones</span></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-image">
-          <img
-            src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1200&q=85"
-            alt="Zanzibar beach road"
-          />
-          <div class="image-note">
-            <span>01</span>
-            <div>
-              <b>Delivered to you</b><small>Hotel drop-off island-wide</small>
-            </div>
+          <div>
+            <strong>4.9/5</strong>
+            <span>guest rating</span>
+          </div>
+
+          <div>
+            <strong>6+</strong>
+            <span>years local</span>
+          </div>
+
+          <div>
+            <strong>6</strong>
+            <span>delivery zones</span>
           </div>
         </div>
-        <div class="sun-stamp">Unguja<br /><i>on wheels</i></div>
       </div>
+
+
+      <div class="hero-visual">
+        <div class="hero-image">
+
+          {% if hero_image %}
+            <img
+              src="{{ hero_image.file.url }}"
+              alt="{{ hero_image.title }}"
+            >
+          {% else %}
+            <div class="vehicle-no-image">
+              Upload a hero image from Admin
+            </div>
+          {% endif %}
+
+          <div class="image-note">
+            <span>01</span>
+
+            <div>
+              <b>Delivered to you</b>
+              <small>Hotel drop-off island-wide</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sun-stamp">
+          Unguja<br>
+          <i>on wheels</i>
+        </div>
+      </div>
+
     </div>
+
     <div class="hero-ruler">
       <div class="container">
-        <span>SCROLL TO EXPLORE</span><span class="ruler-line"></span
-        ><span>01 / 06</span>
+        <span>SCROLL TO EXPLORE</span>
+        <span class="ruler-line"></span>
+        <span>01 / 06</span>
       </div>
     </div>
   </section>
 
+
+  <!-- BOOKING -->
   <section class="booking-section" id="booking">
     <div class="container">
+
       <div class="booking-panel">
+
         <div class="booking-intro">
           <p class="kicker">START HERE</p>
-          <h2>Find a vehicle<br />for your dates.</h2>
+
+          <h2>
+            Find a vehicle<br>
+            for your dates.
+          </h2>
+
           <p>
             Tell us where and when. We confirm availability within the hour.
           </p>
         </div>
-        <form class="booking-form" data-api="/api/bookings/" novalidate>
-          <label
-            >I'm looking for<select name="vehicle" required>
+
+
+        <form
+          class="booking-form"
+          data-api="/api/bookings/"
+          novalidate
+        >
+
+          <label>
+            I'm looking for
+
+            <select name="vehicle" required>
               <option value="car">A car</option>
               <option value="scooter">A scooter</option>
-            </select></label
-          ><label
-            >Pickup zone<select name="pickup_location" required>
+            </select>
+          </label>
+
+
+          <label>
+            Pickup zone
+
+            <select name="pickup_location" required>
               <option>Stone Town</option>
               <option>Nungwi</option>
               <option>Kendwa</option>
               <option>Kiwengwa</option>
               <option>Matemwe</option>
               <option>Paje</option>
-            </select></label
-          ><label
-            >Pick-up<input name="pickup_date" type="date" required /></label
-          ><label>Return<input name="return_date" type="date" required /></label
-          ><label
-            >Time<input
+            </select>
+          </label>
+
+
+          <label>
+            Pick-up
+
+            <input
+              name="pickup_date"
+              type="date"
+              required
+            >
+          </label>
+
+
+          <label>
+            Return
+
+            <input
+              name="return_date"
+              type="date"
+              required
+            >
+          </label>
+
+
+          <label>
+            Time
+
+            <input
               name="pickup_time"
               type="time"
               value="10:00"
-              required /></label
-          ><button class="button button-dark" type="submit">
+              required
+            >
+          </label>
+
+
+          <button
+            class="button button-dark"
+            type="submit"
+          >
             Check availability <span>→</span>
           </button>
-          <p class="form-status" role="status" aria-live="polite"></p>
+
+          <p
+            class="form-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+
         </form>
+
       </div>
+
     </div>
   </section>
 
+
+  <!-- FLEET -->
   <section class="section" id="fleet">
     <div class="container">
+
       <div class="section-heading">
+
         <div>
           <p class="kicker">THE FLEET</p>
           <h2>Pick your island companion.</h2>
         </div>
+
         <p>
           From nimble scooters for beach-hopping to comfortable cars for the
           whole crew.
         </p>
+
       </div>
+
+
+      <!-- FILTERS -->
       <div class="filter-tabs" data-filters>
-        <button class="active" data-filter="all">All vehicles</button
-        ><button data-filter="car">Cars</button
-        ><button data-filter="scooter">Scooters</button>
+
+        <button
+          class="active"
+          data-filter="all"
+          type="button"
+        >
+          All vehicles
+        </button>
+
+        <button
+          data-filter="car"
+          type="button"
+        >
+          Cars
+        </button>
+
+        <button
+          data-filter="scooter"
+          type="button"
+        >
+          Scooters
+        </button>
+
       </div>
+
+
+      <!-- VEHICLES -->
       <div class="fleet-grid">
+
         {% for vehicle in fleet %}
+
         <article
           class="vehicle-card"
-          data-category="{{ vehicle.category|lower }}"
+          data-category="{{ vehicle.category }}"
         >
+
+          <!-- IMAGE -->
           <div class="vehicle-image">
-            <img src="{{ vehicle.image }}" alt="{{ vehicle.name }}" /><span
-              >{{ vehicle.category }}</span
-            >
-          </div>
-          <div class="vehicle-content">
-            <div class="vehicle-title">
-              <div>
-                <h3>{{ vehicle.name }}</h3>
-                <p>{{ vehicle.transmission }} · {{ vehicle.seats }}</p>
-              </div>
-              <strong>${{ vehicle.price }}<small>/day</small></strong>
-            </div>
-            <div class="vehicle-footer">
-              <span>★ 4.9 guest rating</span
-              ><a href="#booking" data-vehicle="{{ vehicle.category|lower }}"
-                >Book this <span>↗</span></a
+
+            {% if vehicle.image %}
+
+              <img
+                src="{{ vehicle.image.url }}"
+                alt="{{ vehicle.name }}"
               >
-            </div>
+
+            {% else %}
+
+              <div class="vehicle-no-image">
+                No image available
+              </div>
+
+            {% endif %}
+
+            <span>
+              {{ vehicle.get_category_display }}
+            </span>
+
           </div>
+
+
+          <!-- CONTENT -->
+          <div class="vehicle-content">
+
+            <div class="vehicle-title">
+
+              <div>
+
+                <h3>
+                  {{ vehicle.name }}
+                </h3>
+
+                <p>
+                  {{ vehicle.transmission }}
+                  ·
+                  {{ vehicle.seats }}
+                </p>
+
+              </div>
+
+
+              <!-- PRICES -->
+              <div class="vehicle-pricing">
+
+                <strong>
+                  ${{ vehicle.price_usd }}
+                  <small>/day</small>
+                </strong>
+
+                <div class="vehicle-price-tzs">
+                  TZS {{ vehicle.price_tzs }}
+                  <small>/day</small>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+            {% if vehicle.description %}
+
+            <p class="vehicle-description">
+              {{ vehicle.description }}
+            </p>
+
+            {% endif %}
+
+
+            <!-- FOOTER -->
+            <div class="vehicle-footer">
+
+              <span>
+                ★ 4.9 guest rating
+              </span>
+
+              <a
+                href="#booking"
+                data-vehicle="{{ vehicle.category }}"
+              >
+                Book this <span>↗</span>
+              </a>
+
+            </div>
+
+          </div>
+
         </article>
+
+
+        {% empty %}
+
+        <div class="empty-fleet">
+
+          <h3>
+            No vehicles available
+          </h3>
+
+          <p>
+            Please add vehicles from the Django Admin.
+          </p>
+
+        </div>
+
         {% endfor %}
+
       </div>
+
     </div>
   </section>
 
+
+  <!-- HOW IT WORKS -->
   <section class="band-section" id="how">
     <div class="container">
+
       <div class="section-heading light">
+
         <div>
           <p class="kicker">HOW IT WORKS</p>
-          <h2>Good plans start<br />with easy wheels.</h2>
+
+          <h2>
+            Good plans start<br>
+            with easy wheels.
+          </h2>
         </div>
+
         <p>
           We keep the logistics simple so your first day in Zanzibar can feel
           like a holiday.
         </p>
+
       </div>
+
+
       <div class="steps">
+
         <div>
           <span>01</span>
           <h3>Choose</h3>
-          <p>Pick the vehicle that matches your route and crew.</p>
+          <p>
+            Pick the vehicle that matches your route and crew.
+          </p>
         </div>
+
         <div>
           <span>02</span>
           <h3>Reserve</h3>
-          <p>Send your dates. We reply directly on WhatsApp.</p>
+          <p>
+            Send your dates. We reply directly on WhatsApp.
+          </p>
         </div>
+
         <div>
           <span>03</span>
           <h3>Receive</h3>
-          <p>We meet you at your hotel with the keys and a quick handover.</p>
+          <p>
+            We meet you at your hotel with the keys and a quick handover.
+          </p>
         </div>
+
         <div>
           <span>04</span>
           <h3>Roam</h3>
-          <p>Follow the coast, find your beach, take the long way home.</p>
+          <p>
+            Follow the coast, find your beach, take the long way home.
+          </p>
         </div>
+
       </div>
+
     </div>
   </section>
 
+
+  <!-- ABOUT -->
   <section class="section split-section" id="about">
     <div class="container split-grid">
+
       <div class="split-image">
-        <img
-          src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&w=1000&q=85"
-          alt="Scooter ready for a Zanzibar journey"
-        /><span class="vertical-label">LOCAL KNOWLEDGE · SINCE 2019</span>
+
+        {% for item in media_items %}
+
+          {% if item.media_type == "image" %}
+
+            <img
+              src="{{ item.file.url }}"
+              alt="{{ item.title }}"
+            >
+
+          {% endif %}
+
+        {% empty %}
+
+          <div class="vehicle-no-image">
+            Upload an image from Admin
+          </div>
+
+        {% endfor %}
+
+        <span class="vertical-label">
+          LOCAL KNOWLEDGE · SINCE 2019
+        </span>
+
       </div>
+
+
       <div class="split-copy">
-        <p class="kicker">WHY BEST RIDE</p>
-        <h2>The freedom of a local recommendation.</h2>
-        <p>
-          We are a small Zanzibar team, not a faceless booking platform. That
-          means honest prices, vehicles checked before every handover, and
-          someone who can answer when the road surprises you.
+
+        <p class="kicker">
+          WHY BEST RIDE
         </p>
+
+        <h2>
+          The freedom of a local recommendation.
+        </h2>
+
+        <p>
+          We are a small Zanzibar team, not a faceless booking platform.
+          That means honest prices, vehicles checked before every handover,
+          and someone who can answer when the road surprises you.
+        </p>
+
+
         <div class="check-list">
+
           <div>
-            <span>✓</span><b>No hidden fees</b
-            ><small>Clear daily pricing from the start.</small>
+            <span>✓</span>
+            <b>No hidden fees</b>
+            <small>
+              Clear daily pricing from the start.
+            </small>
           </div>
+
           <div>
-            <span>✓</span><b>Free delivery</b
-            ><small>Stone Town, Nungwi, Kendwa and Kiwengwa.</small>
+            <span>✓</span>
+            <b>Free delivery</b>
+            <small>
+              Stone Town, Nungwi, Kendwa and Kiwengwa.
+            </small>
           </div>
+
           <div>
-            <span>✓</span><b>Real support</b
-            ><small>WhatsApp help throughout your rental.</small>
+            <span>✓</span>
+            <b>Real support</b>
+            <small>
+              WhatsApp help throughout your rental.
+            </small>
           </div>
+
         </div>
+
       </div>
+
     </div>
   </section>
 
+
+  <!-- DESTINATIONS -->
   <section class="destination-section" id="destinations">
     <div class="container">
+
       <div class="section-heading">
+
         <div>
-          <p class="kicker">WHERE WE DELIVER</p>
-          <h2>Start anywhere<br />on the island.</h2>
+          <p class="kicker">
+            WHERE WE DELIVER
+          </p>
+
+          <h2>
+            Start anywhere<br>
+            on the island.
+          </h2>
         </div>
+
         <p>
-          We bring the ride to you. Delivery is free in our core zones; ask us
-          about other locations.
+          We bring the ride to you. Delivery is free in our core zones;
+          ask us about other locations.
         </p>
+
       </div>
+
+
       <div class="destination-grid">
+
         <div class="destination-feature">
-          <img
-            src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?auto=format&fit=crop&w=1200&q=85"
-            alt="Zanzibar coast"
-          />
+
+          {% for item in media_items %}
+
+            {% if item.media_type == "image" %}
+
+              <img
+                src="{{ item.file.url }}"
+                alt="{{ item.title }}"
+              >
+
+            {% endif %}
+
+          {% empty %}
+
+            <div class="vehicle-no-image">
+              Upload an image from Admin
+            </div>
+
+          {% endfor %}
+
+
           <div>
             <span>01</span>
-            <h3>North coast</h3>
-            <p>Nungwi · Kendwa · Matemwe</p>
+
+            <h3>
+              North coast
+            </h3>
+
+            <p>
+              Nungwi · Kendwa · Matemwe
+            </p>
           </div>
+
         </div>
+
+
         <div class="destination-list">
-          <a href="#booking"
-            ><span>02</span><b>Stone Town</b
-            ><small>Historic streets and airport access</small><i>↗</i></a
-          ><a href="#booking"
-            ><span>03</span><b>East coast</b
-            ><small>Kiwengwa and quiet beach roads</small><i>↗</i></a
-          ><a href="#booking"
-            ><span>04</span><b>South-east</b
-            ><small>Paje, Jambiani and beyond</small><i>↗</i></a
-          >
+
+          <a href="#booking">
+
+            <span>02</span>
+
+            <b>
+              Stone Town
+            </b>
+
+            <small>
+              Historic streets and airport access
+            </small>
+
+            <i>↗</i>
+
+          </a>
+
+
+          <a href="#booking">
+
+            <span>03</span>
+
+            <b>
+              East coast
+            </b>
+
+            <small>
+              Kiwengwa and quiet beach roads
+            </small>
+
+            <i>↗</i>
+
+          </a>
+
+
+          <a href="#booking">
+
+            <span>04</span>
+
+            <b>
+              South-east
+            </b>
+
+            <small>
+              Paje, Jambiani and beyond
+            </small>
+
+            <i>↗</i>
+
+          </a>
+
         </div>
+
       </div>
+
     </div>
   </section>
 
+
+  <!-- MEDIA -->
   {% if media_items %}
+
   <section class="section media-section">
     <div class="container">
+
       <div class="section-heading">
+
         <div>
-          <p class="kicker">FROM THE ISLAND</p>
-          <h2>See Zanzibar in motion.</h2>
+          <p class="kicker">
+            FROM THE ISLAND
+          </p>
+
+          <h2>
+            See Zanzibar in motion.
+          </h2>
         </div>
-        <a class="text-link" href="/media-upload/"
-          >Manage media <span>↗</span></a
+
+        <a
+          class="text-link"
+          href="/media-upload/"
         >
+          Manage media <span>↗</span>
+        </a>
+
       </div>
+
+
       <div class="media-strip">
+
         {% for item in media_items|slice:":4" %}
+
         <div class="media-tile">
-          {% if item.media_type == 'video' %}
-          <video muted playsinline preload="metadata" src="{{ item.file.url }}"></video>
+
+          {% if item.media_type == "video" %}
+
+          <video
+            muted
+            playsinline
+            preload="metadata"
+            src="{{ item.file.url }}"
+          ></video>
+
           {% else %}
-          <img src="{{ item.file.url }}" alt="{{ item.title }}" />
+
+          <img
+            src="{{ item.file.url }}"
+            alt="{{ item.title }}"
+          >
+
           {% endif %}
-          <span>{{ item.title }}</span>
+
+          <span>
+            {{ item.title }}
+          </span>
+
         </div>
+
         {% endfor %}
+
       </div>
+
     </div>
   </section>
+
   {% endif %}
 
+
+  <!-- GUEST BOOK -->
   <section class="quote-section">
+
     <div class="container quote-inner">
-      <p class="kicker">GUEST BOOK</p>
+
+      <p class="kicker">
+        GUEST BOOK
+      </p>
+
       <blockquote>
-        “The car was waiting at our hotel, the price was exactly what we agreed,
-        and we found three beaches before lunch.”
+        “The car was waiting at our hotel, the price was exactly what we
+        agreed, and we found three beaches before lunch.”
       </blockquote>
-      <p class="quote-author">— Sarah M. · United Kingdom</p>
-      <div class="rating">★★★★★ <span>4.9 average from 99+ guests</span></div>
+
+      <p class="quote-author">
+        — Sarah M. · United Kingdom
+      </p>
+
+      <div class="rating">
+        ★★★★★
+        <span>
+          4.9 average from 99+ guests
+        </span>
+      </div>
+
     </div>
+
   </section>
 
+
+  <!-- FAQ -->
   <section class="section faq-section" id="faq">
+
     <div class="container narrow">
+
       <div class="section-heading">
+
         <div>
-          <p class="kicker">GOOD TO KNOW</p>
-          <h2>Questions, answered.</h2>
+          <p class="kicker">
+            GOOD TO KNOW
+          </p>
+
+          <h2>
+            Questions, answered.
+          </h2>
         </div>
+
       </div>
+
+
       <div class="faq-list">
+
         <details open>
-          <summary>Do I need a driving licence?<span>+</span></summary>
+
+          <summary>
+            Do I need a driving licence?
+            <span>+</span>
+          </summary>
+
           <p>
-            Yes. Bring a valid national or international driving licence and
-            your passport or ID.
+            Yes. Bring a valid national or international driving licence
+            and your passport or ID.
           </p>
+
         </details>
+
+
         <details>
-          <summary>Can you deliver to my hotel?<span>+</span></summary>
+
+          <summary>
+            Can you deliver to my hotel?
+            <span>+</span>
+          </summary>
+
           <p>
-            Yes. Delivery is free in Stone Town, Nungwi, Kendwa and Kiwengwa.
-            Ask us about other areas.
+            Yes. Delivery is free in Stone Town, Nungwi, Kendwa and
+            Kiwengwa. Ask us about other areas.
           </p>
+
         </details>
+
+
         <details>
-          <summary>Is a deposit required?<span>+</span></summary>
+
+          <summary>
+            Is a deposit required?
+            <span>+</span>
+          </summary>
+
           <p>
-            A refundable deposit is required at handover. We explain all terms
-            before you confirm.
+            A refundable deposit is required at handover. We explain all
+            terms before you confirm.
           </p>
+
         </details>
+
+
         <details>
-          <summary>Can I extend my rental?<span>+</span></summary>
+
+          <summary>
+            Can I extend my rental?
+            <span>+</span>
+          </summary>
+
           <p>
-            Usually, yes. Message us on WhatsApp before your return date and we
-            will check availability.
+            Usually, yes. Message us on WhatsApp before your return date
+            and we will check availability.
           </p>
+
         </details>
+
       </div>
+
     </div>
+
   </section>
 
+
+  <!-- CONTACT -->
   <section class="contact-section" id="contact">
+
     <div class="container contact-grid">
+
       <div>
-        <p class="kicker">LET'S TALK</p>
-        <h2>Planning a few days<br />in the sun?</h2>
+
+        <p class="kicker">
+          LET'S TALK
+        </p>
+
+        <h2>
+          Planning a few days<br>
+          in the sun?
+        </h2>
+
         <p>
           Send a note and our local team will help you choose the right wheels.
         </p>
+
+
         <div class="contact-details">
-          <a href="https://wa.me/255684968112"
-            ><span>WA</span> +255 684 968 112</a
-          ><a href="mailto:hello@bestridezanzibar.com"
-            ><span>@</span> hello@bestridezanzibar.com</a
-          ><span><span>◎</span> Beach 122, Kiwengwa</span>
+
+          <a href="https://wa.me/255684968112">
+            <span>WA</span>
+            +255 684 968 112
+          </a>
+
+          <a href="mailto:hello@bestridezanzibar.com">
+            <span>@</span>
+            hello@bestridezanzibar.com
+          </a>
+
+          <span>
+            <span>◎</span>
+            Beach 122, Kiwengwa
+          </span>
+
         </div>
+
       </div>
-      <form class="contact-form" data-api="/api/messages/" novalidate>
-        <label
-          >Your name<input
+
+
+      <form
+        class="contact-form"
+        data-api="/api/messages/"
+        novalidate
+      >
+
+        <label>
+          Your name
+
+          <input
             name="name"
             required
-            placeholder="How should we call you?" /></label
-        ><label
-          >Email address<input
+            placeholder="How should we call you?"
+          >
+        </label>
+
+
+        <label>
+          Email address
+
+          <input
             name="email"
             type="email"
             required
-            placeholder="you@example.com" /></label
-        ><label
-          >Message<textarea
+            placeholder="you@example.com"
+          >
+        </label>
+
+
+        <label>
+          Message
+
+          <textarea
             name="message"
             required
             rows="4"
             placeholder="Tell us about your trip..."
-          ></textarea></label
-        ><button class="button button-dark" type="submit">
+          ></textarea>
+        </label>
+
+
+        <button
+          class="button button-dark"
+          type="submit"
+        >
           Send message <span>↗</span>
         </button>
-        <p class="form-status" role="status" aria-live="polite"></p>
+
+
+        <p
+          class="form-status"
+          role="status"
+          aria-live="polite"
+        ></p>
+
       </form>
+
     </div>
+
   </section>
+
 </main>
+
 {% endblock %}

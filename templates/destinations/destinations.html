@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}Destinations | Zanzibar Rides{% endblock %}
+
+{% block content %}
+
+<style>
+    .dest-page {
+        background: #f8fafc;
+        min-height: 100vh;
+        padding-bottom: 80px;
+    }
+
+    .dest-hero {
+        background: linear-gradient(135deg, #071a2f, #0d3558);
+        color: white;
+        text-align: center;
+        padding: 90px 20px;
+    }
+
+    .dest-hero h1 {
+        font-size: 52px;
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .dest-hero p {
+        max-width: 720px;
+        margin: auto;
+        color: #dbeafe;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .dest-container {
+        max-width: 1150px;
+        margin: auto;
+        padding: 70px 20px;
+    }
+
+    .dest-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+
+    .dest-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 10px 35px rgba(0,0,0,.07);
+        transition: .3s ease;
+    }
+
+    .dest-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 45px rgba(0,0,0,.12);
+    }
+
+    .dest-icon {
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #dbeafe, #e0f2fe);
+        font-size: 70px;
+    }
+
+    .dest-content {
+        padding: 28px;
+    }
+
+    .dest-content h3 {
+        color: #071a2f;
+        font-size: 24px;
+        margin: 0 0 12px;
+    }
+
+    .dest-content p {
+        color: #64748b;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .dest-cta {
+        margin-top: 70px;
+        background: white;
+        border-radius: 24px;
+        padding: 45px 25px;
+        text-align: center;
+        box-shadow: 0 10px 35px rgba(0,0,0,.06);
+    }
+
+    .dest-cta h2 {
+        color: #071a2f;
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .dest-cta p {
+        color: #64748b;
+        margin-bottom: 25px;
+    }
+
+    .dest-btn {
+        display: inline-block;
+        background: #0d6efd;
+        color: white;
+        text-decoration: none;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-weight: 700;
+        transition: .3s;
+    }
+
+    .dest-btn:hover {
+        background: #084298;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 850px) {
+        .dest-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .dest-hero h1 {
+            font-size: 38px;
+        }
+    }
+</style>
+
+<div class="dest-page">
+
+    <section class="dest-hero">
+        <h1>Explore Zanzibar</h1>
+        <p>
+            Discover beautiful beaches, historic towns and
+            unforgettable experiences across the island with
+            Zanzibar Rides.
+        </p>
+    </section>
+
+    <section class="dest-container">
+
+        <div class="dest-grid">
+
+            <div class="dest-card">
+                <div class="dest-icon">🏛️</div>
+                <div class="dest-content">
+                    <h3>Stone Town</h3>
+                    <p>
+                        Explore the historic heart of Zanzibar,
+                        famous for its narrow streets, old buildings,
+                        markets and rich culture.
+                    </p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-icon">🏖️</div>
+                <div class="dest-content">
+                    <h3>Nungwi</h3>
+                    <p>
+                        Enjoy beautiful beaches, clear blue water
+                        and unforgettable sunsets at the northern
+                        coast of Zanzibar.
+                    </p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-icon">🌊</div>
+                <div class="dest-content">
+                    <h3>Kendwa</h3>
+                    <p>
+                        Relax on one of Zanzibar's most beautiful
+                        beaches and enjoy a peaceful island
+                        atmosphere.
+                    </p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-icon">🐬</div>
+                <div class="dest-content">
+                    <h3>Kizimkazi</h3>
+                    <p>
+                        Visit the southern coast and discover
+                        marine experiences and the natural beauty
+                        of Zanzibar.
+                    </p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-icon">🌴</div>
+                <div class="dest-content">
+                    <h3>Paje</h3>
+                    <p>
+                        Experience the relaxed beach lifestyle,
+                        beautiful ocean views and exciting
+                        activities on the southeast coast.
+                    </p>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-icon">🐚</div>
+                <div class="dest-content">
+                    <h3>Jambiani</h3>
+                    <p>
+                        Discover a peaceful coastal village,
+                        local culture and stunning beaches away
+                        from the busy areas.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="dest-cta">
+            <h2>Ready to Explore?</h2>
+            <p>
+                Choose your vehicle and start your Zanzibar adventure.
+            </p>
+
+            <a href="{% url 'fleet' %}" class="dest-btn">
+                View Our Fleet
+            </a>
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

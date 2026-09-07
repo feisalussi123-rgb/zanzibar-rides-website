@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% block title %}How It Works | Zanzibar Rides{% endblock %}
+
+{% block content %}
+
+<style>
+    .how-page {
+        background: #f8fafc;
+        min-height: 100vh;
+        padding-bottom: 80px;
+    }
+
+    .how-hero {
+        background: linear-gradient(135deg, #071a2f, #0d3558);
+        color: white;
+        padding: 90px 20px;
+        text-align: center;
+    }
+
+    .how-hero h1 {
+        font-size: 52px;
+        margin-bottom: 15px;
+        font-weight: 800;
+    }
+
+    .how-hero p {
+        max-width: 700px;
+        margin: auto;
+        color: #dbeafe;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .how-container {
+        max-width: 1150px;
+        margin: auto;
+        padding: 70px 20px;
+    }
+
+    .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+
+    .step-card {
+        background: white;
+        padding: 35px 28px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 35px rgba(0,0,0,.07);
+        transition: .3s ease;
+        border: 1px solid #e5e7eb;
+    }
+
+    .step-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 45px rgba(0,0,0,.12);
+    }
+
+    .step-number {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background: #0d6efd;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 800;
+    }
+
+    .step-card h3 {
+        color: #071a2f;
+        margin-bottom: 12px;
+        font-size: 22px;
+    }
+
+    .step-card p {
+        color: #64748b;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .how-extra {
+        margin-top: 70px;
+        background: white;
+        border-radius: 24px;
+        padding: 45px;
+        box-shadow: 0 10px 35px rgba(0,0,0,.06);
+        text-align: center;
+    }
+
+    .how-extra h2 {
+        font-size: 32px;
+        color: #071a2f;
+        margin-bottom: 15px;
+    }
+
+    .how-extra p {
+        color: #64748b;
+        max-width: 750px;
+        margin: 0 auto 28px;
+        line-height: 1.8;
+    }
+
+    .how-btn {
+        display: inline-block;
+        background: #0d6efd;
+        color: white;
+        text-decoration: none;
+        padding: 14px 28px;
+        border-radius: 10px;
+        font-weight: 700;
+        transition: .3s;
+    }
+
+    .how-btn:hover {
+        background: #084298;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 850px) {
+        .steps {
+            grid-template-columns: 1fr;
+        }
+
+        .how-hero h1 {
+            font-size: 38px;
+        }
+
+        .how-extra {
+            padding: 30px 20px;
+        }
+    }
+</style>
+
+<div class="how-page">
+
+```
+<section class="how-hero">
+    <h1>How It Works</h1>
+    <p>
+        Renting a car or scooter in Zanzibar is simple.
+        Choose your vehicle, send your booking request,
+        and get ready to explore the island.
+    </p>
+</section>
+
+<section class="how-container">
+
+    <div class="steps">
+
+        <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>Choose Your Vehicle</h3>
+            <p>
+                Browse our available cars and scooters,
+                compare prices and choose the vehicle
+                that fits your trip.
+            </p>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>Make a Booking</h3>
+            <p>
+                Select your pickup location, pickup date,
+                return date and preferred pickup time,
+                then submit your booking request.
+            </p>
+        </div>
+
+        <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>Enjoy Zanzibar</h3>
+            <p>
+                Once your booking is confirmed,
+                collect your vehicle and start exploring
+                the beautiful island of Zanzibar.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="how-extra">
+        <h2>Ready to Explore Zanzibar?</h2>
+
+        <p>
+            Whether you are visiting Stone Town, relaxing
+            at the beaches, or discovering hidden places,
+            Zanzibar Rides makes transportation simple
+            and convenient.
+        </p>
+
+        <a href="{% url 'fleet' %}" class="how-btn">
+            View Our Fleet
+        </a>
+    </div>
+
+</section>
+```
+
+</div>
+
+{% endblock %}
