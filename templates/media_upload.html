@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload Rental Media | Best Ride</title>
+  <link rel="stylesheet" href="{% static 'css/media-upload.css' %}">
+</head>
+<body>
+  <main class="page-shell">
+    <a class="back-link" href="/">&larr; Back to Best Ride</a>
+    <section class="upload-panel">
+      <p class="eyebrow">BEST RIDE MEDIA</p>
+      <h1>Upload photos and videos</h1>
+      <p class="intro">Add fleet photos, delivery clips or Zanzibar travel media. Files are limited to 50 MB.</p>
+      {% for message in messages %}<div class="notice">{{ message }}</div>{% endfor %}
+      <form method="post" enctype="multipart/form-data" class="upload-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <label>Title {{ form.title }}{{ form.title.errors }}</label>
+        <label>Media type {{ form.media_type }}{{ form.media_type.errors }}</label>
+        <label>File {{ form.file }}{{ form.file.errors }}</label>
+        <button type="submit">Upload media</button>
+      </form>
+    </section>
+    <section class="gallery">
+      <div class="gallery-heading"><p class="eyebrow">MEDIA LIBRARY</p><span>{{ media_items|length }} files</span></div>
+      <div class="media-grid">
+        {% for item in media_items %}
+          <article class="media-card">
+            {% if item.media_type == 'video' %}<video controls preload="metadata" src="{{ item.file.url }}"></video>{% else %}<img src="{{ item.file.url }}" alt="{{ item.title }}">{% endif %}
+            <div><strong>{{ item.title }}</strong><small>{{ item.get_media_type_display }}</small></div>
+          </article>
+        {% empty %}<p class="empty-state">No media uploaded yet.</p>{% endfor %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>

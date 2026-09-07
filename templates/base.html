@@ -1,0 +1,39 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Best Ride Zanzibar car and scooter rental with delivery across the island.">
+  <title>{% block title %}Best Ride Zanzibar{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <header class="site-header" data-header>
+    <div class="container nav-shell">
+      <a class="brand" href="/"><span class="brand-mark">BR</span><span>Best <b>Ride</b></span></a>
+      <button class="menu-button" type="button" aria-label="Open menu" data-menu-button><span></span><span></span><span></span></button>
+      <nav class="site-nav" data-nav>
+        <a href="#fleet">Fleet</a><a href="#how">How it works</a><a href="#destinations">Destinations</a><a href="#about">About us</a><a href="#contact">Contact</a>
+        <a class="nav-cta" href="#booking">Book a ride <span>↗</span></a>
+      </nav>
+    </div>
+  </header>
+  {% block content %}{% endblock %}
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a class="brand footer-brand" href="/"><span class="brand-mark">BR</span><span>Best <b>Ride</b></span></a><p>Simple island mobility, delivered with local care.</p></div>
+      <div><h3>Explore</h3><a href="#fleet">Cars & scooters</a><a href="#destinations">Delivery zones</a><a href="#faq">FAQ</a></div>
+      <div><h3>Contact</h3><a href="tel:+255684968112">+255 684 968 112</a><a href="mailto:hello@bestridezanzibar.com">hello@bestridezanzibar.com</a><a href="https://wa.me/255684968112">WhatsApp us</a></div>
+    </div>
+    <div class="container footer-bottom"><span>© 2026 Best Ride Zanzibar</span><a href="/media-upload/">Media manager</a></div>
+  </footer>
+  <a class="whatsapp" href="https://wa.me/255684968112" aria-label="Chat on WhatsApp">WA</a>
+  <script src="{% static 'js/site.js' %}"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>
